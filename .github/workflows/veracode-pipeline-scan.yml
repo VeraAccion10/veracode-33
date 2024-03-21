@@ -79,7 +79,7 @@ jobs:
           fail_build: true
 
       - name: Veracode Pipeline Results
-        id: mitigation
+        id: mitigated_scans
         if: always()
         uses: TestOrganization1303/github-actions-integration-helper@main
         with:
