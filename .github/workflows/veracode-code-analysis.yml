@@ -85,6 +85,8 @@ jobs:
           start_line: ${{ github.event.client_payload.annotationObj.start_line }}
           end_line: ${{ github.event.client_payload.annotationObj.end_line }}
           break_build_invalid_policy: ${{github.event.client_payload.break_build_invalid_policy }}
+          source_repository: ${{ github.event.client_payload.repository.full_name }}
+          check_run_id: ${{ needs.register.outputs.run_id }}
  
   build:
     needs: validations
