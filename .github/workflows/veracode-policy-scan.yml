@@ -39,6 +39,15 @@ on:
       source_repository:
           required: true
           type: string
+      break_build_policy_findings: 
+          required: true
+          type: string
+      break_build_on_error: 
+          required: true
+          type: string
+      filter_mitigated_flaws: 
+          required: true
+          type: string
 
 jobs:
   policy_scan:
@@ -88,8 +97,10 @@ jobs:
           vkey: ${{ secrets.VERACODE_API_KEY }}
           appname: ${{ inputs.profile_name }}
           source_repository: ${{ inputs.source_repository }}
-          fail_checks_on_policy: false
-          fail_checks_on_error: false
+          fail_checks_on_policy: ${{ inputs.fail_checks_on_policy }}
+          fail_checks_on_error: ${{ inputs.fail_checks_on_error }}
+          filter_mitigated_flaws: ${{ inputs.filter_mitigated_flaws }}
+
 # This step will import the flaws from the step above
   create-issues:
     needs: policy_scan
