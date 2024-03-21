@@ -80,6 +80,7 @@ jobs:
 
       - name: Veracode Pipeline Results
         if: always()
+        id: mitigated-scan
         uses: TestOrganization1303/github-actions-integration-helper@feature/DXS-205
         with:
           action: 'preparePipelineResults'
@@ -89,8 +90,8 @@ jobs:
           vkey: ${{ secrets.VERACODE_API_KEY }}
           appname: ${{ inputs.profile_name }}
           source_repository: ${{ inputs.source_repository }}
-          fail_checks_on_policy: false
-          fail_checks_on_error: true
+          fail_checks_on_policy: ${{ inputs.fail_checks_on_policy }}
+          fail_checks_on_error: ${{ inputs.fail_checks_on_error }} 
           filter_mitigated_flaws: ${{ inputs.filter_mitigated_flaws }}
           
   results_to_security_tab:
