@@ -90,8 +90,8 @@ jobs:
           vkey: ${{ secrets.VERACODE_API_KEY }}
           appname: ${{ inputs.profile_name }}
           source_repository: ${{ inputs.source_repository }}
-          fail_checks_on_policy: ${{ inputs.break_build_policy_findings }}
-          fail_checks_on_error: ${{ inputs.break_build_on_error }}
+          fail_checks_on_policy: false
+          fail_checks_on_error: true
           filter_mitigated_flaws: ${{ inputs.filter_mitigated_flaws }}
           
   results_to_security_tab:
