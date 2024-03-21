@@ -68,8 +68,10 @@ jobs:
           vkey: ${{ secrets.VERACODE_API_KEY }}
           veracode_policy_name: ${{ inputs.policy_name }}
           file: ./veracode_artifact_directory/${{ env.veracode_artifact }}
+          fail_build: true
 
       - name: Veracode Pipeline Results
+        id: mitigation
         if: always()
         uses: TestOrganization1303/github-actions-integration-helper@main
         with:
@@ -80,10 +82,10 @@ jobs:
           vkey: ${{ secrets.VERACODE_API_KEY }}
           appname: ${{ inputs.profile_name }}
           source_repository: ${{ inputs.source_repository }}
-          fail_checks_on_policy: false
-          fail_checks_on_error: true
-          filter_mitigated_flaws: false
-          fail_build: true
+          fail_checks_on_policy: ${{ inputs.fail_checks_on_policy }}
+          fail_checks_on_error: ${{ inputs.fail_checks_on_error }}
+          filter_mitigated_flaws: ${{ inputs.filter_mitigated_flaws }}
+          
   results_to_security_tab:
     needs: pipeline_scan
     runs-on: ubuntu-latest
