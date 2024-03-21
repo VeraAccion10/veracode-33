@@ -27,6 +27,15 @@ on:
       create_issue:
         required: true
         type: boolean
+      check_run_id:
+          required: true
+          type: string
+      source_repository:
+          required: true
+          type: string
+      profile_name:
+          required: true
+          type: string
 
   
 jobs:
@@ -59,6 +68,21 @@ jobs:
           vkey: ${{ secrets.VERACODE_API_KEY }}
           veracode_policy_name: ${{ inputs.policy_name }}
           file: ./veracode_artifact_directory/${{ env.veracode_artifact }}
+
+      - name: Veracode Pipeline Results
+        if: always()
+        uses: TestOrganization1303/github-actions-integration-helper@main
+        with:
+          action: 'preparePipelineResults'
+          token: ${{ inputs.token }}
+          check_run_id: ${{ inputs.check_run_id }}
+          vid: ${{ secrets.VERACODE_API_ID }}
+          vkey: ${{ secrets.VERACODE_API_KEY }}
+          appname: ${{ inputs.profile_name }}
+          source_repository: ${{ inputs.source_repository }}
+          fail_checks_on_policy: false
+          fail_checks_on_error: true
+          filter_mitigated_flaws: false
           fail_build: true
   results_to_security_tab:
     needs: pipeline_scan
