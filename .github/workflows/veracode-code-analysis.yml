@@ -98,7 +98,7 @@ jobs:
 
   pipeline_scan:
     # needs the build step before this job will start running
-    needs: build
+    needs: [build, register]
     if: contains(github.event.action, 'pipeline')
     uses: ./.github/workflows/veracode-pipeline-scan.yml
     with:
@@ -110,6 +110,9 @@ jobs:
       token: ${{ github.event.client_payload.token }}
       ref: ${{ github.event.client_payload.user_config.ref }}
       create_issue: ${{ github.event.client_payload.user_config.create_issue }}
+      source_repository: ${{ github.event.client_payload.repository.full_name }}
+      check_run_id: ${{ needs.register.outputs.run_id }}
+      profile_name: ${{ github.event.client_payload.user_config.profile_name }}
     secrets: inherit
     
   policy_scan:
