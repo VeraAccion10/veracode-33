@@ -98,8 +98,8 @@ jobs:
           vkey: ${{ secrets.VERACODE_API_KEY }}
           appname: ${{ inputs.profile_name }}
           source_repository: ${{ inputs.source_repository }}
-          fail_checks_on_policy: ${{ inputs.fail_checks_on_policy }}
-          fail_checks_on_error: ${{ inputs.fail_checks_on_error }}
+          fail_checks_on_policy: ${{ inputs.break_build_policy_findings }}
+          fail_checks_on_error: ${{ inputs.break_build_on_error }}
           filter_mitigated_flaws: ${{ inputs.filter_mitigated_flaws }}
 
 # This step will import the flaws from the step above
