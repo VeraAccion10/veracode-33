@@ -87,6 +87,7 @@ jobs:
           failbuild: true
           
       - name: Veracode Policy Results
+        id: mitigated_scans
         if: always()
         uses: veracode/workflow-app-helper@main
         with:
