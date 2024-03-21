@@ -36,7 +36,15 @@ on:
       profile_name:
           required: true
           type: string
-
+      break_build_policy_findings: 
+          required: true
+          type: string
+      break_build_on_error: 
+          required: true
+          type: string
+      filter_mitigated_flaws: 
+          required: true
+          type: string
   
 jobs:
   pipeline_scan:
