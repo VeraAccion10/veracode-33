@@ -89,7 +89,7 @@ jobs:
       - name: Veracode Policy Results
         id: mitigated_scans
         if: always()
-        uses: veracode/workflow-app-helper@main
+        uses: TestOrganization1303/github-actions-integration-helper@feature/DXS-205
         with:
           action: 'preparePolicyResults'
           token: ${{ inputs.token }}
