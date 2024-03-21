@@ -81,7 +81,7 @@ jobs:
       - name: Veracode Pipeline Results
         if: always()
         id: mitigated-scan
-        uses: TestOrganization1303/github-actions-integration-helper@feature/DXS-205
+        uses: TestOrganization1303/github-actions-integration-helper@main
         with:
           action: 'preparePipelineResults'
           token: ${{ inputs.token }}
