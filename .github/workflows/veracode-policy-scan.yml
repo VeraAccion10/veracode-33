@@ -76,7 +76,9 @@ jobs:
           scantimeout: 15
           include: ${{ inputs.modules_to_scan }}
           failbuild: true
+          
       - name: Veracode Policy Results
+        if: always()
         uses: veracode/workflow-app-helper@main
         with:
           action: 'preparePolicyResults'
