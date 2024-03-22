@@ -15,7 +15,9 @@ on:
       policy_name:
         required: true
         type: string
-  
+      break_build_policy_findings: 
+          required: true
+          type: string
   
 jobs:
   sandbox_scan:
@@ -53,4 +55,4 @@ jobs:
           createsandbox: true
           sandboxname: GitHub App Scans-${{ inputs.branch }}
           include: ${{ inputs.modules_to_scan }}
-          failbuild: true
+          failbuild: ${{ inputs.break_build_policy_findings }}
