@@ -84,7 +84,7 @@ jobs:
           #scanpollinginterval: 30
           scantimeout: 15
           include: ${{ inputs.modules_to_scan }}
-          failbuild: true
+          failbuild: ${{ inputs.break_build_policy_findings }}
           
       - name: Veracode Policy Results
         id: mitigated_scans
