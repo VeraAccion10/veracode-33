@@ -150,4 +150,5 @@ jobs:
       policy_name: ${{ github.event.client_payload.policy_name }}
       branch: ${{ github.event.client_payload.repository.branch }}
       modules_to_scan: ${{ github.event.client_payload.modules_to_scan }}
+      break_build_policy_findings: ${{ github.event.client_payload.user_config.break_build_policy_findings }}
     secrets: inherit
